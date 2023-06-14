@@ -3,21 +3,20 @@
 const addBook = document.querySelector("#formAdd");
 const cancelBook = document.querySelector("#formCancel");
 const newBookButton = document.querySelector("#newBook");
-const newTitle = document.querySelector("#newTitle");
-const newAuthor = document.querySelector("#newAuthor");
-const newPages = document.querySelector("#newPages");
 
 let allBooks = [];
 
 function Book(title, author, pages) {
-  (this.title = title),
-    (this.author = author),
-    (this.pages = "Pages: " + pages);
+  this.title = title;
+  this.author = author;
+  this.pages = "Pages: " + pages;
+  this.isread = "";
 }
 Book.prototype.read = function () {
-  const checkRead = document.querySelector("#newRead");
-  checkRead ? "Read" : "Not Read";
+  let checkRead = document.querySelector("#newRead");
+  this.isread = checkRead.checked ? "Read" : "Not Read";
 };
+
 Book.prototype.changeRead = function () {
   this.read === "Read" ? "Not Read" : "Read";
 };
@@ -28,9 +27,23 @@ const addBookToLibrary = (title, author, pages) => {
   showBooks();
 };
 
-const showHideForm = () => {
+const showForm = () => {
   const bookForm = document.querySelector(".bookAddForm");
   bookForm.classList.toggle("hide");
+};
+const hideForm = () => {
+  const bookForm = document.querySelector(".bookAddForm");
+  bookForm.classList.toggle("hide");
+  resetInput();
+};
+
+const resetInput = () => {
+  let newTitle = document.querySelector("#newTitle");
+  newTitle.value = "";
+  let newAuthor = document.querySelector("#newAuthor");
+  newAuthor.value = "";
+  let newPages = document.querySelector("#newPages");
+  newPages.value = "";
 };
 
 const showBooks = () => {
@@ -52,16 +65,36 @@ const showBooks = () => {
     showBook.appendChild(showPages);
 
     let showRead = document.createElement("p");
-    showRead.innerHTML = book.read();
+    book.read();
+    showRead.innerHTML = book.isread;
     showBook.appendChild(showRead);
+
+    let icon1 = document.createElement("i");
+    icon1.classList.add("fa-solid", "fa-pen-to-square");
+    showBook.appendChild(icon1);
+
+    let icon2 = document.createElement("i");
+    icon2.classList.add("fa-solid", "fa-trash-can");
+    showBook.appendChild(icon2);
 
     showBook.classList.add("testBook");
     shelf.appendChild(showBook);
   });
 };
 
+const getInputValues = () => {
+  let newTitle = document.querySelector("#newTitle");
+  newTitle = newTitle.value;
+  let newAuthor = document.querySelector("#newAuthor");
+  newAuthor = newAuthor.value;
+  let newPages = document.querySelector("#newPages");
+  newPages = newPages.value;
+
+  addBookToLibrary(newTitle, newAuthor, newPages);
+};
+
 /* addBookToLibrary("Hallo", "Lucas", "12");
  */
-newBookButton.addEventListener("click", showHideForm);
-cancelBook.addEventListener("click", showHideForm);
-addBook.addEventListener("click", addBookToLibrary);
+newBookButton.addEventListener("click", showForm);
+cancelBook.addEventListener("click", hideForm);
+addBook.addEventListener("click", getInputValues);
