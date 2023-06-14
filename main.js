@@ -1,5 +1,6 @@
 "use strict";
 
+const shelf = document.querySelector("#shelf");
 const addBook = document.querySelector("#formAdd");
 const cancelBook = document.querySelector("#formCancel");
 const newBookButton = document.querySelector("#newBook");
@@ -47,7 +48,6 @@ const resetInput = () => {
 };
 
 const showBooks = () => {
-  const shelf = document.querySelector("#shelf");
   const editEntry = document.querySelector("#editEntry");
   const deleteEntry = document.querySelector("#deleteEntry");
   allBooks.forEach((book) => {
@@ -77,7 +77,7 @@ const showBooks = () => {
     icon2.classList.add("fa-solid", "fa-trash-can");
     showBook.appendChild(icon2);
 
-    showBook.classList.add("testBook");
+    showBook.classList.add("newBook");
     shelf.appendChild(showBook);
   });
 };
@@ -93,8 +93,22 @@ const getInputValues = () => {
   addBookToLibrary(newTitle, newAuthor, newPages);
 };
 
-/* addBookToLibrary("Hallo", "Lucas", "12");
- */
+const addBookEvent = (rootElement) => {
+  rootElement.addEventListener(
+    "click",
+    (e) => {
+      let targetElement = e.target;
+      while (targetElement != null) {
+        if (targetElement.matches(".newBook")) {
+          targetElement.remove();
+        }
+        targetElement = targetElement.parentElement;
+      }
+    },
+    true
+  );
+};
+addBookEvent(shelf, "click");
 newBookButton.addEventListener("click", showForm);
 cancelBook.addEventListener("click", hideForm);
 addBook.addEventListener("click", getInputValues);

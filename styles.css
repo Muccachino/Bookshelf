@@ -33,14 +33,20 @@ body #shelf {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-body #shelf .testBook {
+body #shelf .newBook {
   border: 2px solid midnightblue;
   border-radius: 10px;
+  font-size: 1.2em;
   -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
           box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
   padding: 15px;
   width: 250px;
   background-color: skyblue;
+}
+body #shelf .newBook i {
+  float: right;
+  margin-right: 20px;
+  font-size: 120%;
 }
 body #shelf .bookAddForm {
   border: 2px solid darkblue;
