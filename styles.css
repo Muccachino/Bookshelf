@@ -30,10 +30,14 @@ body header #newBook {
 }
 body #shelf {
   padding: 50px 10vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
-body #shelf #testBook {
-  border: 2px solid darkblue;
+body #shelf .testBook {
+  border: 2px solid midnightblue;
   border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
   padding: 15px;
   width: 250px;
   background-color: skyblue;
@@ -41,10 +45,10 @@ body #shelf #testBook {
 body #shelf .bookAddForm {
   border: 2px solid darkblue;
   border-radius: 10px;
-  background-color: skyblue;
+  background-color: rgb(70, 187, 233);
   position: absolute;
-  left: 30vw;
-  right: 30vw;
+  left: 25vw;
+  right: 25vw;
   top: 200px;
   padding: 20px;
   display: grid;
