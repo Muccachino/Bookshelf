@@ -41,9 +41,13 @@ const getInputValues = () => {
   newAuthor = newAuthor.value;
   let newPages = document.querySelector("#newPages");
   newPages = newPages.value;
-
-  addBookToLibrary(newTitle, newAuthor, newPages);
-  resetInputValues();
+  if (newTitle === "" && newAuthor === "") {
+    let message = document.querySelector("#message");
+    message.innerHTML = "Please enter a Title or Author!";
+  } else {
+    addBookToLibrary(newTitle, newAuthor, newPages);
+    resetInputValues();
+  }
 };
 
 const resetInputValues = () => {
@@ -53,6 +57,7 @@ const resetInputValues = () => {
   newAuthor.value = "";
   let newPages = document.querySelector("#newPages");
   newPages.value = "";
+  message.innerHTML = "";
 };
 
 const addBookToLibrary = (title, author, pages) => {
