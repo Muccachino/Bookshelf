@@ -7,6 +7,7 @@ const newBookButton = document.querySelector("#newBookButton");
 const deleteEntry = document.querySelector("#deleteEntry");
 
 let allBooks = [];
+let library = [];
 
 function Book(title, author, pages) {
   this.title = title;
@@ -23,13 +24,6 @@ Book.prototype.changeRead = function () {
   this.read === "Read" ? "Not Read" : "Read";
 };
 
-const addBookToLibrary = (title, author, pages) => {
-  let newBook = new Book(title, author, pages);
-  allBooks.push(newBook);
-  showBooks();
-  allBooks.pop();
-};
-
 const showForm = () => {
   const bookForm = document.querySelector(".bookAddForm");
   bookForm.classList.toggle("hide");
@@ -37,16 +31,36 @@ const showForm = () => {
 const hideForm = () => {
   const bookForm = document.querySelector(".bookAddForm");
   bookForm.classList.toggle("hide");
-  resetInput();
+  resetInputValues();
 };
 
-const resetInput = () => {
+const getInputValues = () => {
+  let newTitle = document.querySelector("#newTitle");
+  newTitle = newTitle.value;
+  let newAuthor = document.querySelector("#newAuthor");
+  newAuthor = newAuthor.value;
+  let newPages = document.querySelector("#newPages");
+  newPages = newPages.value;
+
+  addBookToLibrary(newTitle, newAuthor, newPages);
+  resetInputValues();
+};
+
+const resetInputValues = () => {
   let newTitle = document.querySelector("#newTitle");
   newTitle.value = "";
   let newAuthor = document.querySelector("#newAuthor");
   newAuthor.value = "";
   let newPages = document.querySelector("#newPages");
   newPages.value = "";
+};
+
+const addBookToLibrary = (title, author, pages) => {
+  let newBook = new Book(title, author, pages);
+  allBooks.push(newBook);
+  library.push(newBook);
+  showBooks();
+  allBooks.pop();
 };
 
 const showBooks = () => {
@@ -88,17 +102,6 @@ const showBooks = () => {
     showBook.classList.add("newBook");
     shelf.appendChild(showBook);
   });
-};
-
-const getInputValues = () => {
-  let newTitle = document.querySelector("#newTitle");
-  newTitle = newTitle.value;
-  let newAuthor = document.querySelector("#newAuthor");
-  newAuthor = newAuthor.value;
-  let newPages = document.querySelector("#newPages");
-  newPages = newPages.value;
-
-  addBookToLibrary(newTitle, newAuthor, newPages);
 };
 
 const removeEntry = (rootElement) => {
