@@ -73,12 +73,19 @@ const showBooks = () => {
   const deleteEntry = document.querySelector("#deleteEntry");
   allBooks.forEach((book) => {
     let showBook = document.createElement("div");
+
     let showTitle = document.createElement("p");
     showTitle.innerHTML = book.title;
+    if (showTitle.innerHTML === "") {
+      showTitle.innerHTML = "-";
+    }
     showBook.appendChild(showTitle);
 
     let showAuthor = document.createElement("p");
     showAuthor.innerHTML = book.author;
+    if (showAuthor.innerHTML === "") {
+      showAuthor.innerHTML = "-";
+    }
     showBook.appendChild(showAuthor);
 
     let showPages = document.createElement("p");
