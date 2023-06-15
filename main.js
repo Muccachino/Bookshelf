@@ -3,7 +3,7 @@
 const shelf = document.querySelector("#shelf");
 const addBook = document.querySelector("#formAdd");
 const cancelBook = document.querySelector("#formCancel");
-const newBookButton = document.querySelector("#newBook");
+const newBookButton = document.querySelector("#newBookButton");
 const deleteEntry = document.querySelector("#deleteEntry");
 
 let allBooks = [];
