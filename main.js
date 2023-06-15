@@ -4,6 +4,7 @@ const shelf = document.querySelector("#shelf");
 const addBook = document.querySelector("#formAdd");
 const cancelBook = document.querySelector("#formCancel");
 const newBookButton = document.querySelector("#newBook");
+const deleteEntry = document.querySelector("#deleteEntry");
 
 let allBooks = [];
 
@@ -26,6 +27,7 @@ const addBookToLibrary = (title, author, pages) => {
   let newBook = new Book(title, author, pages);
   allBooks.push(newBook);
   showBooks();
+  allBooks.pop();
 };
 
 const showForm = () => {
@@ -69,13 +71,19 @@ const showBooks = () => {
     showRead.innerHTML = book.isread;
     showBook.appendChild(showRead);
 
+    let button1 = document.createElement("button");
+    button1.classList.add("editEntry");
     let icon1 = document.createElement("i");
-    icon1.classList.add("fa-solid", "fa-pen-to-square");
-    showBook.appendChild(icon1);
+    icon1.classList.add("fa-solid", "fa-book-open-reader");
+    button1.appendChild(icon1);
+    showBook.appendChild(button1);
 
+    let button2 = document.createElement("button");
+    button2.classList.add("deleteEntry");
     let icon2 = document.createElement("i");
     icon2.classList.add("fa-solid", "fa-trash-can");
-    showBook.appendChild(icon2);
+    button2.appendChild(icon2);
+    showBook.appendChild(button2);
 
     showBook.classList.add("newBook");
     shelf.appendChild(showBook);
@@ -93,14 +101,14 @@ const getInputValues = () => {
   addBookToLibrary(newTitle, newAuthor, newPages);
 };
 
-const addBookEvent = (rootElement) => {
+const removeEntry = (rootElement) => {
   rootElement.addEventListener(
     "click",
     (e) => {
       let targetElement = e.target;
       while (targetElement != null) {
-        if (targetElement.matches(".newBook")) {
-          targetElement.remove();
+        if (targetElement.matches(".deleteEntry")) {
+          targetElement.parentElement.remove();
         }
         targetElement = targetElement.parentElement;
       }
@@ -108,7 +116,29 @@ const addBookEvent = (rootElement) => {
     true
   );
 };
-addBookEvent(shelf, "click");
+
+const readEntry = (rootElement) => {
+  rootElement.addEventListener(
+    "click",
+    (e) => {
+      let targetElement = e.target;
+      while (targetElement != null) {
+        if (targetElement.matches(".editEntry")) {
+          if (targetElement.previousElementSibling.innerHTML === "Read") {
+            targetElement.previousElementSibling.innerHTML = "Not Read";
+          } else {
+            targetElement.previousElementSibling.innerHTML = "Read";
+          }
+        }
+        targetElement = targetElement.parentElement;
+      }
+    },
+    true
+  );
+};
+
+removeEntry(shelf, "click");
+readEntry(shelf, "click");
 newBookButton.addEventListener("click", showForm);
 cancelBook.addEventListener("click", hideForm);
 addBook.addEventListener("click", getInputValues);
