@@ -120,6 +120,7 @@ const showBooks = (book) => {
 
 const updatePrototype = () => {
   if (library != null) {
+    allBooks = library;
     library.forEach((book) => {
       Object.setPrototypeOf(book, Book.prototype);
     });
