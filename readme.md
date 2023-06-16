@@ -55,3 +55,10 @@ readEntry()
 ```
 
 These are the functions for the icons in every book entry, so you can either delete them or change the read status.
+
+```
+updatePrototype()
+updateLibrary()
+```
+
+Functions to show book entries saved in local storage after a page reload.
