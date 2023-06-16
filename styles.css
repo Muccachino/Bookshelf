@@ -69,7 +69,7 @@ body .bookAddForm {
   position: absolute;
   left: 25vw;
   right: 25vw;
-  top: 200px;
+  top: 250px;
   scale: 100%;
   -webkit-transition: scale 0.2s ease;
   transition: scale 0.2s ease;
