@@ -25,6 +25,12 @@ getInputValues()
 Reads out the input values from the "New Book" form and uses them as parameters for the new entry.
 
 ```
+checkInputValues();
+```
+
+Checks if all input values have been added and otherwise sends a message, which input needs to be added.
+
+```
 resetInputValues()
 ```
 

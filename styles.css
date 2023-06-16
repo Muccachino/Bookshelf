@@ -2,15 +2,15 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Pacifico", cursive;
+  font-family: "Times New Roman", Times, serif;
 }
 
 body {
-  background-color: burlywood;
+  background-color: rgb(245, 235, 224);
 }
 body header {
   height: 150px;
-  background-color: skyblue;
+  background-color: rgb(213, 189, 175);
   padding-bottom: 10px;
   display: grid;
   grid-template-rows: 3fr 1fr;
@@ -23,16 +23,21 @@ body header {
 body header h1 {
   grid-row: 1;
   font-size: 3em;
+  font-weight: lighter;
 }
 body header #newBookButton {
   grid-row: 2;
   width: 170px;
   margin-left: 70vw;
-  background-color: midnightblue;
-  border: none;
-  color: white;
+  -webkit-transition: scale 0.3s linear;
+  transition: scale 0.3s linear;
+  background-color: rgb(214, 204, 194);
+  border: 2px solid brown;
   border-radius: 50px;
   font-size: 1.5em;
+}
+body header #newBookButton:hover {
+  scale: 110%;
 }
 body #shelf {
   padding: 50px 10vw;
@@ -40,27 +45,27 @@ body #shelf {
   grid-template-columns: repeat(5, 1fr);
 }
 body #shelf .newBook {
-  border: 5px solid midnightblue;
+  border: 2px solid brown;
   border-radius: 10px;
   font-size: 1.2em;
-  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.4);
+          box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.4);
   padding: 15px;
   margin-bottom: 30px;
   width: 250px;
-  background-color: skyblue;
+  background-color: rgb(237, 237, 233);
 }
 body #shelf .newBook button {
-  background-color: skyblue;
+  background-color: rgb(237, 237, 233);
   border: none;
   float: right;
   margin-right: 20px;
   font-size: 120%;
 }
-body #shelf .bookAddForm {
-  border: 2px solid darkblue;
+body .bookAddForm {
+  border: 2px solid brown;
   border-radius: 10px;
-  background-color: rgb(70, 187, 233);
+  background-color: rgb(213, 189, 175);
   position: absolute;
   left: 25vw;
   right: 25vw;
@@ -72,10 +77,11 @@ body #shelf .bookAddForm {
   display: grid;
   grid-template-rows: auto;
 }
-body #shelf .bookAddForm h2 {
+body .bookAddForm h2 {
+  font-size: 2em;
   text-align: center;
 }
-body #shelf .bookAddForm #formInputs {
+body .bookAddForm #formInputs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -84,15 +90,16 @@ body #shelf .bookAddForm #formInputs {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-body #shelf .bookAddForm #formInputs input[type=text] {
+body .bookAddForm #formInputs input[type=text] {
+  height: 30px;
   margin: 10px 0px;
   border-radius: 5px;
 }
-body #shelf .bookAddForm #newRead {
+body .bookAddForm #newRead {
   height: 15px;
   width: 15px;
 }
-body #shelf .bookAddForm #formButtons {
+body .bookAddForm #formButtons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -100,12 +107,14 @@ body #shelf .bookAddForm #formButtons {
       -ms-flex-pack: end;
           justify-content: end;
 }
-body #shelf .bookAddForm #formButtons button {
+body .bookAddForm #formButtons button {
   width: 100px;
+  height: 30px;
+  font-size: 1em;
   margin-right: 20px;
   background-color: burlywood;
   border-radius: 10px;
 }
-body #shelf .hide {
+body .hide {
   scale: 0%;
 }/*# sourceMappingURL=styles.css.map */
