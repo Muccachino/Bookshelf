@@ -119,15 +119,19 @@ const showBooks = (book) => {
 };
 
 const updatePrototype = () => {
-  library.forEach((book) => {
-    Object.setPrototypeOf(book, Book.prototype);
-  });
+  if (library != null) {
+    library.forEach((book) => {
+      Object.setPrototypeOf(book, Book.prototype);
+    });
+  }
 };
 
 const updateLibrary = () => {
-  library.forEach((book) => {
-    showBooks(book);
-  });
+  if (library != null) {
+    library.forEach((book) => {
+      showBooks(book);
+    });
+  }
 };
 
 const removeEntry = (rootElement) => {
@@ -173,8 +177,8 @@ const readEntry = (rootElement) => {
     true
   );
 };
+
 const library = JSON.parse(localStorage.getItem("library"));
-allBooks = library;
 
 updatePrototype();
 updateLibrary();
