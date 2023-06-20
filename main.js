@@ -54,6 +54,7 @@ const checkInputValues = (newTitle, newAuthor, newPages) => {
     message.innerHTML = "Please enter the number of pages!";
   } else {
     addBookToLibrary(newTitle, newAuthor, newPages);
+    hideForm();
     resetInputValues();
   }
 };
@@ -66,12 +67,13 @@ const resetInputValues = () => {
   let newPages = document.querySelector("#newPages");
   newPages.value = "";
   message.innerHTML = "";
+  let checkRead = document.querySelector("#newRead");
+  checkRead.checked = false;
 };
 
 const addBookToLibrary = (title, author, pages) => {
   let newBook = new Book(title, author, pages);
   allBooks.push(newBook);
-  localStorage.setItem("library", JSON.stringify(allBooks));
   showBooks(newBook);
 };
 
@@ -96,7 +98,9 @@ const showBooks = (book) => {
   showBook.appendChild(showPages);
 
   let showRead = document.createElement("p");
-  book.read();
+  if (book.isread === "") {
+    book.read();
+  }
   showRead.innerHTML = book.isread;
   showBook.appendChild(showRead);
 
@@ -116,6 +120,7 @@ const showBooks = (book) => {
 
   showBook.classList.add("newBook");
   shelf.appendChild(showBook);
+  localStorage.setItem("library", JSON.stringify(allBooks));
 };
 
 const updatePrototype = () => {
@@ -166,11 +171,17 @@ const readEntry = (rootElement) => {
       let targetElement = e.target;
       while (targetElement != null) {
         if (targetElement.matches(".editEntry")) {
+          let entryNumber = parseInt(
+            targetElement.parentElement.getAttribute("data-entryNumber")
+          );
           if (targetElement.previousElementSibling.innerHTML === "Read") {
             targetElement.previousElementSibling.innerHTML = "Not Read";
+            allBooks[entryNumber].isread = "Not Read";
           } else {
             targetElement.previousElementSibling.innerHTML = "Read";
+            allBooks[entryNumber].isread = "Read";
           }
+          localStorage.setItem("library", JSON.stringify(allBooks));
         }
         targetElement = targetElement.parentElement;
       }
